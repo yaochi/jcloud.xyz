@@ -1,0 +1,4 @@
+sudo: required
+rvm: 2.0.0
+language: ruby
+script: "bundle exec jekyll build"

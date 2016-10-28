@@ -1,0 +1,79 @@
+---
+layout: page
+title: 谢先斌的博客
+tagline: 
+---
+{% include JB/setup %}
+
+<div class="col-md-9" role="main">
+  <ul class="posts">
+    {% for post in paginator.posts %}
+      <li class="modal-open">
+        <h2 class="title"><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h2>
+          <a href="{{ post.url | prepend: site.baseurl }}">
+            {{ post.excerpt }}
+          </a>
+        <h4>
+          <span class="pull-left date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <span class="pull-right">
+            {% for cg in post.tags %}
+              <a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{cg}}-ref">{{cg}}</a>
+              {% if forloop.index < forloop.length %},{% endif %}
+            {% endfor %}
+          </span>
+        </h4>
+      </li>
+    {% endfor %}
+  </ul>
+  <nav>
+  <ul class="pagination">
+    {% if paginator.previous_page %}
+      <li>
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Previous">
+        <span aria-hidden="true">上一页</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="disabled">
+        <a href="javascript:void(0);" aria-label="Previous">
+        <span aria-hidden="true">上一页</span>
+        </a>
+      </li>
+    {% endif %}
+  
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <li class="active">
+          <a href="#">{{ page }} <span class="sr-only">(current)</span></a>
+        </li>
+      {% elsif page == 1 %}
+        <li>
+          <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+        </li>
+      {% else %}
+        <li>
+          <a href="/blog/{{ page }}">{{ page }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+      <li>
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Next">
+          <span aria-hidden="true">下一页</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="disabled">
+        <a href="javascript:void(0);" aria-label="Next">
+          <span aria-hidden="true">下一页</span>
+        </a>
+      </li>
+    {% endif %}
+    <span class="page-num">&nbsp;&nbsp;第&nbsp;{{ paginator.page }}&nbsp;页&nbsp;&nbsp;共&nbsp;{{ paginator.total_pages }}&nbsp;页</span>
+    </ul>
+  </nav>
+</div>
+<div class="col-md-3" role="complementary">
+  {% assign categories_list = site.categories %}
+  {% include JB/categories_blog_list %}
+<div>

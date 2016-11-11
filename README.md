@@ -14,7 +14,7 @@
 
 ## 博客主题
 
-- Jekyll-Bootstrap-3
+- Jekyll-jcloud-3
 
 
 ## Build [![Travis-CI Build Status](https://api.travis-ci.org/yaochi/jcloud.xyz.png?branch=master)](http://travis-ci.org/yaochi/jcloud.xyz) [![CodeShip Build Status](https://codeship.com/projects/b2a453f0-f301-0133-2881-16a4a456a383/status?branch=master)](https://codeship.com/projects/149646)

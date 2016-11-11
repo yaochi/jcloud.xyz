@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: jcloud/page
 title: About Me
 tagline: ^_^!
 permalink: /about/

@@ -1,0 +1,20 @@
+{% if site.safe and site.Jcloud.analytics.provider and page.Jcloud.analytics != false %}
+
+{% case site.Jcloud.analytics.provider %}
+{% when "baidu" %}
+  {% include Jcloud/analytics-providers/baidu %}
+{% when "google" %}
+  {% include Jcloud/analytics-providers/google %}
+{% when "googleUA" %}
+  {% include Jcloud/analytics-providers/googleUA %}
+{% when "getclicky" %}
+  {% include Jcloud/analytics-providers/getclicky %}
+{% when "mixpanel" %}
+  {% include Jcloud/analytics-providers/mixpanel %}
+{% when "piwik" %}
+  {% include Jcloud/analytics-providers/piwik %}
+{% when "custom" %}
+  {% include custom/analytics %}
+{% endcase %}
+
+{% endif %}

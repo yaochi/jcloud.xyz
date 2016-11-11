@@ -1,0 +1,10 @@
+{% if site.Jcloud.sharing.provider %}
+
+{% case site.Jcloud.sharing.provider %}
+{% when "baidu" %}
+  {% include Jcloud/shares-providers/baidu %}
+{% when "custom" %}
+  {% include custom/sharing %}
+{% endcase %}
+
+{% endif %}

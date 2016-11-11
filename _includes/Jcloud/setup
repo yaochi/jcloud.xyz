@@ -1,0 +1,22 @@
+{% capture Jcloudcache %}
+  <!--
+  - Dynamically set liquid variables for working with URLs/paths
+  -->
+  {% if site.Jcloud.setup.provider == "custom" %}
+    {% include custom/setup %}
+  {% else %}
+    {% if site.safe and site.Jcloud.BASE_PATH and site.Jcloud.BASE_PATH != '' %}
+      {% assign BASE_PATH = site.Jcloud.BASE_PATH %}
+      {% assign HOME_PATH = site.Jcloud.BASE_PATH %}
+    {% else %}
+      {% assign BASE_PATH = nil %}
+      {% assign HOME_PATH = "/" %}
+    {% endif %}
+
+    {% if site.Jcloud.ASSET_PATH %}
+      {% assign ASSET_PATH = site.Jcloud.ASSET_PATH %}
+    {% else %}
+      {% capture ASSET_PATH %}{{ BASE_PATH }}/assets/themes/{{ layout.theme.name }}{% endcapture %}
+    {% endif %}  
+  {% endif %}
+{% endcapture %}{% assign Jcloudcache = nil %}

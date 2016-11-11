@@ -15,7 +15,7 @@ redcarpet:
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : 谢先斌的博客
+title : Jcloud.xyz
 tagline: Site Tagline
 author :
   name : 谢先斌
@@ -39,9 +39,9 @@ author :
 #
 production_url : http://www.xiexianbin.cn
 
-# All Jekyll-Bootstrap specific configurations are namespaced into this hash
+# All Jekyll-jcloud specific configurations are namespaced into this hash
 #
-JB :
+Jcloud :
   #version : 0.3.0
 
   # All links will be namespaced by BASE_PATH if defined.
@@ -76,10 +76,10 @@ JB :
   #   http://s3.amazonaws.com/yoursite/themes/watermelon
   #   /assets
   #
-  ASSET_PATH : /assets/themes/bootstrap
+  ASSET_PATH : /assets/themes/jcloud
 
-  # These paths are to the main pages Jekyll-Bootstrap ships with.
-  # Some JB helpers refer to these paths; change them here if needed.
+  # These paths are to the main pages Jekyll-jcloud ships with.
+  # Some Jcloud helpers refer to these paths; change them here if needed.
   #
   archive_path: /archive/
   categories_path : /categories/
@@ -177,3 +177,5 @@ gems: [jekyll-paginate]
 paginate : 10
 paginate_path : "blog/:num"
 
+# repository
+repository: yaochi/jcloud.xyz

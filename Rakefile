@@ -14,7 +14,7 @@ CONFIG = {
 }
 
 # Path configuration helper
-module JB
+module Jcloud
   class Path
     SOURCE = "."
     Paths = {
@@ -38,7 +38,7 @@ module JB
     end
   
   end #Path
-end #JB
+end #Jcloud
 
 # Usage: rake post title="A Title" [date="2012-02-09"] [tags=[tag1, tag2]]
 desc "Begin a new post in #{CONFIG['posts']}"
@@ -67,7 +67,7 @@ task :post do
     post.puts "category: "
     post.puts "tags: #{tags}"
     post.puts "---"
-    post.puts "{% include JB/setup %}"
+    post.puts "{% include Jcloud/setup %}"
   end
 end # task :post
 
@@ -88,11 +88,11 @@ task :page do
   puts "Creating new page: #{filename}"
   open(filename, 'w') do |post|
     post.puts "---"
-    post.puts "layout: page"
+    post.puts "layout: jcloud/page"
     post.puts "title: \"#{title}\""
     post.puts 'description: ""'
     post.puts "---"
-    post.puts "{% include JB/setup %}"
+    post.puts "{% include Jcloud/setup %}"
   end
 end # task :page
 
@@ -109,14 +109,14 @@ namespace :theme do
   # Public: Switch from one theme to another for your blog.
   #
   # name - String, Required. name of the theme you want to switch to.
-  #        The theme must be installed into your JB framework.
+  #        The theme must be installed into your Jcloud framework.
   #
   # Examples
   #
   #   rake theme:switch name="the-program"
   #
   # Returns Success/failure messages.
-  desc "Switch between Jekyll-bootstrap themes."
+  desc "Switch between Jekyll-jcloud themes."
   task :switch do
     theme_name = ENV["name"].to_s
     theme_path = File.join(CONFIG['themes'], theme_name)
@@ -141,7 +141,7 @@ namespace :theme do
           page.puts "layout: default"
           page.puts "---"
         end 
-        page.puts "{% include JB/setup %}"
+        page.puts "{% include Jcloud/setup %}"
         page.puts "{% include themes/#{theme_name}/#{File.basename(filename)} %}" 
       end
     end
@@ -159,7 +159,7 @@ namespace :theme do
   #
   # Examples
   #
-  #   rake theme:install git="https://github.com/jekyllbootstrap/theme-twitter.git"
+  #   rake theme:install git="https://github.com/jekylljcloud/theme-twitter.git"
   #   rake theme:install name="cool-theme"
   #
   # Returns Success/failure messages.
@@ -172,15 +172,15 @@ namespace :theme do
       name = ENV["name"].to_s.downcase
     end
 
-    packaged_theme_path = JB::Path.build(:theme_packages, :node => name)
+    packaged_theme_path = Jcloud::Path.build(:theme_packages, :node => name)
     
     abort("rake aborted!
       => ERROR: 'name' cannot be blank") if name.empty?
     abort("rake aborted! 
       => ERROR: '#{packaged_theme_path}' directory not found.
-      => Installable themes can be added via git. You can find some here: http://github.com/jekyllbootstrap
+      => Installable themes can be added via git. You can find some here: http://github.com/jekylljcloud
       => To download+install run: `rake theme:install git='[PUBLIC-CLONE-URL]'`
-      => example : rake theme:install git='git@github.com:jekyllbootstrap/theme-the-program.git'
+      => example : rake theme:install git='git@github.com:jekylljcloud/theme-the-program.git'
     ") unless FileTest.directory?(packaged_theme_path)
     
     manifest = verify_manifest(packaged_theme_path)
@@ -197,7 +197,7 @@ namespace :theme do
     
     # Mirror each file into the framework making sure to prompt if already exists.
     packaged_theme_files.each do |filename|
-      file_install_path = File.join(JB::Path.base, filename)
+      file_install_path = File.join(Jcloud::Path.base, filename)
       if File.exist? file_install_path and ask("#{file_install_path} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
         next
       else
@@ -214,7 +214,7 @@ namespace :theme do
   end
 
   # Public: Package a theme using the theme packager.
-  # The theme must be structured using valid JB API.
+  # The theme must be structured using valid Jcloud API.
   # In other words packaging is essentially the reverse of installing.
   #
   # name - String, Required name of the theme you want to package.
@@ -227,30 +227,30 @@ namespace :theme do
   desc "Package theme"
   task :package do
     name = ENV["name"].to_s.downcase
-    theme_path = JB::Path.build(:themes, :node => name)
-    asset_path = JB::Path.build(:theme_assets, :node => name)
+    theme_path = Jcloud::Path.build(:themes, :node => name)
+    asset_path = Jcloud::Path.build(:theme_assets, :node => name)
 
     abort("rake aborted: name cannot be blank") if name.empty?
     abort("rake aborted: '#{theme_path}' directory not found.") unless FileTest.directory?(theme_path)
     abort("rake aborted: '#{asset_path}' directory not found.") unless FileTest.directory?(asset_path)
     
     ## Mirror theme's template directory (_includes)
-    packaged_theme_path = JB::Path.build(:themes, :root => JB::Path.build(:theme_packages, :node => name))
+    packaged_theme_path = Jcloud::Path.build(:themes, :root => Jcloud::Path.build(:theme_packages, :node => name))
     mkdir_p packaged_theme_path
     cp_r theme_path, packaged_theme_path
     
     ## Mirror theme's asset directory
-    packaged_theme_assets_path = JB::Path.build(:theme_assets, :root => JB::Path.build(:theme_packages, :node => name))
+    packaged_theme_assets_path = Jcloud::Path.build(:theme_assets, :root => Jcloud::Path.build(:theme_packages, :node => name))
     mkdir_p packaged_theme_assets_path
     cp_r asset_path, packaged_theme_assets_path
 
     ## Log packager version
     packager = {"packager" => {"version" => CONFIG["theme_package_version"].to_s } }
-    open(JB::Path.build(:theme_packages, :node => "#{name}/packager.yml"), "w") do |page|
+    open(Jcloud::Path.build(:theme_packages, :node => "#{name}/packager.yml"), "w") do |page|
       page.puts packager.to_yaml
     end
     
-    puts "=> '#{name}' theme is packaged and available at: #{JB::Path.build(:theme_packages, :node => name)}"
+    puts "=> '#{name}' theme is packaged and available at: #{Jcloud::Path.build(:theme_packages, :node => name)}"
   end
   
 end # end namespace :theme
@@ -263,10 +263,10 @@ end # end namespace :theme
 #        
 # Returns theme manifest hash
 def theme_from_git_url(url)
-  tmp_path = JB::Path.build(:theme_packages, :node => "_tmp")
+  tmp_path = Jcloud::Path.build(:theme_packages, :node => "_tmp")
   abort("rake aborted: system call to git clone failed") if !system("git clone #{url} #{tmp_path}")
   manifest = verify_manifest(tmp_path)
-  new_path = JB::Path.build(:theme_packages, :node => manifest["name"])
+  new_path = Jcloud::Path.build(:theme_packages, :node => manifest["name"])
   if File.exist?(new_path) && ask("=> #{new_path} theme package already exists. Override?", ['y', 'n']) == 'n'
     remove_dir(tmp_path)
     abort("rake aborted: '#{manifest["name"]}' already exists as theme package.")

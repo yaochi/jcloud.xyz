@@ -1,5 +1,5 @@
 ---
-layout : post
+layout : jcloud/post
 title : test pages
 category : test
 tags : test pages

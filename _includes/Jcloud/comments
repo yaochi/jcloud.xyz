@@ -1,0 +1,18 @@
+{% if site.Jcloud.comments.provider and page.comments != false %}
+
+{% case site.Jcloud.comments.provider %}
+{% when "disqus" %}
+  {% include Jcloud/comments-providers/disqus %}
+{% when "livefyre" %}
+  {% include Jcloud/comments-providers/livefyre %}
+{% when "intensedebate" %}
+  {% include Jcloud/comments-providers/intensedebate %}
+{% when "facebook" %}
+  {% include Jcloud/comments-providers/facebook %}
+{% when "duoshuo" %}
+  {% include Jcloud/comments-providers/duoshuo %}
+{% when "custom" %}
+  {% include custom/comments %}
+{% endcase %}
+
+{% endif %}

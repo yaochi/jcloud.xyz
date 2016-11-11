@@ -1,9 +1,9 @@
 ---
-layout: page
+layout: jcloud/page
 title: 谢先斌的博客
 tagline: 
 ---
-{% include JB/setup %}
+{% include Jcloud/setup %}
 
 <div class="col-md-9" role="main">
   <ul class="posts">
@@ -17,7 +17,7 @@ tagline:
           <span class="pull-left date">{{ post.date | date: "%b %-d, %Y" }}</span>
           <span class="pull-right">
             {% for cg in post.tags %}
-              <a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{cg}}-ref">{{cg}}</a>
+              <a href="{{ BASE_PATH }}{{ site.Jcloud.categories_path }}#{{cg}}-ref">{{cg}}</a>
               {% if forloop.index < forloop.length %},{% endif %}
             {% endfor %}
           </span>
@@ -75,5 +75,5 @@ tagline:
 </div>
 <div class="col-md-3" role="complementary">
   {% assign categories_list = site.categories %}
-  {% include JB/categories_blog_list %}
+  {% include Jcloud/categories_blog_list %}
 <div>

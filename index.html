@@ -17,7 +17,7 @@ tagline:
           <span class="pull-left date">{{ post.date | date: "%b %-d, %Y" }}</span>
           <span class="pull-right">
             {% for cg in post.tags %}
-              <a href="{{ BASE_PATH }}{{ site.Jcloud.categories_path }}#{{cg}}-ref">{{cg}}</a>
+              <a href="{{ BASE_PATH }}{{ site.Jcloud.tags_path }}#{{cg}}-ref">{{cg}}</a>
               {% if forloop.index < forloop.length %},{% endif %}
             {% endfor %}
           </span>

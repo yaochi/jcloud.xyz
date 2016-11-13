@@ -5,7 +5,7 @@ require 'time'
 
 SOURCE = "."
 CONFIG = {
-  'version' => "0.3.0",
+  'version' => "1.0.0",
   'themes' => File.join(SOURCE, "_includes", "themes"),
   'layouts' => File.join(SOURCE, "_layouts"),
   'posts' => File.join(SOURCE, "_posts"),
@@ -138,7 +138,7 @@ namespace :theme do
           page.puts "---"
         else
           page.puts "---"
-          page.puts "layout: default"
+          page.puts "layout: jcloud/default"
           page.puts "---"
         end 
         page.puts "{% include Jcloud/setup %}"

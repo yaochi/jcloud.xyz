@@ -165,10 +165,10 @@ BLOG :
 # SEO information variables
 SEO :
   description :
-    xiexianbin,谢先斌,谢先斌的博客,博客,OpenStack开发者,开源
+    Jcloud.xyz专业的OpenStack镜像分享网站，收集、整理、制作OpenStack镜像。镜像格式包括qcow2、raw等。
   
   keywords :
-    xiexianbin,谢先斌,谢先斌的博客,博客,OpenStack开发者,开源
+    Jcloud，OpenStack镜像，OpenStack qcow2镜像，OpenStack raw镜像，专业的OpenStack镜像网站。
 
 # Gems
 gems: [jekyll-paginate]
